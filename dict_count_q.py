@@ -156,17 +156,46 @@ print(d)
 
 
 
-## Exercise 6: Word Length Distribution
-#sentences = ["The quick brown fox", "jumps over", "the lazy dog"]
-## Convert this:
-#word_lengths = {}
-#for sentence in sentences:
-#    for word in sentence.split():
-#        length = len(word)
-#        if length not in word_lengths:
-#            word_lengths[length] = 0
-#        word_lengths[length] += 1
-#
+# Exercise 6: Word Length Distribution
+print()
+print( """Exercise 6: Word Length Distribution""")
+"""Task: Count how many words of each length appear across all sentences. For example, in "The quick brown", lengths would be {3: 1, 5: 1, 5: 1} since there's one 3-letter word and two 5-letter words."""
+
+sentences = ["The quick brown fox", "jumps over", "the lazy dog"]
+# Convert this:
+word_lengths = {}
+for sentence in sentences:
+    for word in sentence.split():
+        length = len(word)
+        if length not in word_lengths:
+            word_lengths[length] = 0
+        word_lengths[length] += 1
+print(word_lengths)
+
+## so I understand, k,v is word length, count
+## get 
+d = {}
+for sentence in sentences:
+    for word in sentence.split(' '):
+        d[len(word)] = d.get(len(word), 0) + 1
+print(d)
+
+
+## Counter
+ls = []
+for sentence in sentences:
+    for word in sentence.split(' '):
+        ls.append(len(word)) 
+d = Counter(ls)
+print(d)
+
+
+
+# zip it? no, take the word len, make a list pass to Counter. 
+# there's a better way to make the list, but one thing at a time.
+# yup, can make the list in another way, this is fine for now.
+# the more verbose example I don't like much. I'm not usre if I need to practice that.
+# it's kind of messy. I'll keep practicing for now.
 
 
 
@@ -179,36 +208,75 @@ print(d)
 
 
 
+# Exercise 7: User Activity Count
+print()
+print( """Exercise 7: User Activity Count""")
+"""Task: Given a list of tuples containing (user, action) pairs, count how many actions each user has performed total, regardless of the action type."""
+
+events = [
+    ('user1', 'login'),
+    ('user2', 'login'),
+    ('user1', 'purchase'),
+    ('user3', 'login'),
+    ('user1', 'logout')
+]
+# Convert this:
+user_activity = {}
+for user, _ in events:
+    if user not in user_activity:
+        user_activity[user] = 0
+    user_activity[user] += 1
+print(user_activity)
+
+# num actions per user
+# get
+d = {}
+for user, _ in events:
+    d[user] = d.get(user, 0) + 1
+print(d)
+
+# Counter
+# so need to return the iterator? cool, used a generator expression. Nice.
+# (also seeing that I'm getting a sense for what Counter needs.) cool.
+
+d = Counter([user for user, _ in events])
+print(d)
+ 
+# defaultdict
+d = defaultdict(int)
+for user, _ in events:
+    d[user] += 1
+print(d)
 
 
 
 
-## Exercise 7: User Activity Count
-#events = [
-#    ('user1', 'login'),
-#    ('user2', 'login'),
-#    ('user1', 'purchase'),
-#    ('user3', 'login'),
-#    ('user1', 'logout')
-#]
-## Convert this:
-#user_activity = {}
-#for user, _ in events:
-#    if user not in user_activity:
-#        user_activity[user] = 0
-#    user_activity[user] += 1
-#
 
-## Exercise 8: File Extension Counter
-#files = ['doc.pdf', 'file.txt', 'image.jpg', 'doc.pdf', 'file.pdf', 'image.jpg']
-## Convert this:
-#extension_counts = {}
-#for file in files:
-#    ext = file.split('.')[-1]
-#    if ext not in extension_counts:
-#        extension_counts[ext] = 0
-#    extension_counts[ext] += 1
-#
+
+
+
+# Exercise 8: File Extension Counter
+files = ['doc.pdf', 'file.txt', 'image.jpg', 'doc.pdf', 'file.pdf', 'image.jpg']
+# Convert this:
+extension_counts = {}
+for file in files:
+    ext = file.split('.')[-1]
+    if ext not in extension_counts:
+        extension_counts[ext] = 0
+    extension_counts[ext] += 1
+
+
+
+
+
+"""Exercise 8: File Extension Counter"""
+"""Task: From a list of filenames, count how many files there are of each extension type (e.g., how many .pdf, .txt, .jpg files)."""
+
+"""Exercise 9: Status Code Counter"""
+"""Task: Given a list of HTTP status codes from a web server's logs, count how frequently each status code appears to identify common response patterns."""
+
+"""Exercise 10: Nested Category Counter"""
+"""Task: From a list of (category, item) tuples, count how many items are in each main category, ignoring the specific items themselves."""
 
 ## Exercise 9: Status Code Counter
 #status_codes = [200, 404, 200, 500, 403, 404, 200, 200, 404]
