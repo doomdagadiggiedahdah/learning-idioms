@@ -256,6 +256,10 @@ print(d)
 
 
 # Exercise 8: File Extension Counter
+print()
+print( """Exercise 8: File Extension Counter""") 
+"""Task: From a list of filenames, count how many files there are of each extension type (e.g., how many .pdf, .txt, .jpg files)."""
+
 files = ['doc.pdf', 'file.txt', 'image.jpg', 'doc.pdf', 'file.pdf', 'image.jpg']
 # Convert this:
 extension_counts = {}
@@ -264,41 +268,85 @@ for file in files:
     if ext not in extension_counts:
         extension_counts[ext] = 0
     extension_counts[ext] += 1
+print(extension_counts)
+
+# get
+d = {}
+for file in files:
+    ext = file.split('.')[-1]
+    d[ext] = d.get(ext, 0) + 1
+print(d)
+
+# counter
+new = [file.split('.')[-1] for file in files]
+d = Counter(new)
+print(d)
+
+# defdict
+d = defaultdict(int)
+for file in new:
+    d[file] += 1
+print(d)
 
 
 
 
 
-"""Exercise 8: File Extension Counter"""
-"""Task: From a list of filenames, count how many files there are of each extension type (e.g., how many .pdf, .txt, .jpg files)."""
 
-"""Exercise 9: Status Code Counter"""
-"""Task: Given a list of HTTP status codes from a web server's logs, count how frequently each status code appears to identify common response patterns."""
-
-"""Exercise 10: Nested Category Counter"""
-"""Task: From a list of (category, item) tuples, count how many items are in each main category, ignoring the specific items themselves."""
 
 ## Exercise 9: Status Code Counter
-#status_codes = [200, 404, 200, 500, 403, 404, 200, 200, 404]
-## Convert this:
-#status_counts = {}
-#for code in status_codes:
-#    if code not in status_counts:
-#        status_counts[code] = 0
-#    status_counts[code] += 1
-#
+print()
+print("""Exercise 9: Status Code Counter""")
+"""Task: Given a list of HTTP status codes from a web server's logs, count how frequently each status code appears to identify common response patterns."""
+
+status_codes = [200, 404, 200, 500, 403, 404, 200, 200, 404]
+# Convert this:
+status_counts = {}
+for code in status_codes:
+    if code not in status_counts:
+        status_counts[code] = 0
+    status_counts[code] += 1
+print(status_counts)
+
+d = Counter(status_codes)
+print(d)
+
+d = defaultdict(int)
+for i in status_codes:
+    d[i] += 1
+print(d)
+
+
+
+
+
+
 
 ## Exercise 10: Nested Category Counter
-#items = [
-#    ('electronics', 'laptop'),
-#    ('books', 'fiction'),
-#    ('electronics', 'phone'),
-#    ('books', 'fiction'),
-#    ('clothing', 'shirt')
-#]
-## Convert this:
-#category_counts = {}
-#for category, _ in items:
-#    if category not in category_counts:
-#        category_counts[category] = 0
-#    category_counts[category] += 1
+print()
+print("""Exercise 10: Nested Category Counter""")
+"""Task: From a list of (category, item) tuples, count how many items are in each main category, ignoring the specific items themselves."""
+
+items = [
+    ('electronics', 'laptop'),
+    ('books', 'fiction'),
+    ('electronics', 'phone'),
+    ('books', 'fiction'),
+    ('clothing', 'shirt')
+]
+# Convert this:
+category_counts = {}
+for category, _ in items:
+    if category not in category_counts:
+        category_counts[category] = 0
+    category_counts[category] += 1
+print(category_counts)
+
+stuff = map(lambda x: x[0], items)
+d = Counter(stuff)
+print(d)
+
+d = defaultdict(int)
+for item in map(lambda x: x[0], items):
+    d[item] += 1
+print(d)
